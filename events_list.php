@@ -16,6 +16,7 @@ $result = $conn->query($sql);
             <th>Тип</th>
             <th>Ціна</th>
             <th>Створено</th>
+            <th>Дії</th>
         </tr>
     </thead>
     <tbody>
@@ -27,11 +28,22 @@ $result = $conn->query($sql);
             <td><?= $row['type'] ?></td>
             <td><?= $row['price'] ?></td>
             <td><?= $row['created_at'] ?></td>
+            <td>
+                <!-- Кнопка редагування -->
+                <form method="POST" action="edit.php" style="display:inline;">
+                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                    <button type="submit">Редагувати</button>
+                </form>
+                <!-- Кнопка видалення -->
+                <form method="POST" action="delete.php" style="display:inline;">
+                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                    <button type="submit" onclick="return confirm('Ви впевнені, що хочете видалити цей запис?')">Видалити</button>
+                </form>
+            </td>
         </tr>
         <?php endwhile; ?>
     </tbody>
 </table>
-
 
 <div class="back-button">
     <a href="http://localhost/%D0%9B%D0%B0%D0%B1%D0%B0%D1%80%D0%B0%D0%BE%D1%80%D0%BD%D0%B0%207%20%D0%B2%D0%B5%D0%B1-%D1%80%D0%BE%D0%B7%D1%80%D0%BE%D0%B1%D0%BA/index.php">
